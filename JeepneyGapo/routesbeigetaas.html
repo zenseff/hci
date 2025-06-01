@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beige Jeep (Taas)</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Routing Machine CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+</head>
+<body>
+  <div class="logo">
+    <img src="logo.png" alt="Logo" />
+  </div>
+  <div class="nav-buttons">
+    <div class="home-icon" onclick="location.href='home.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2c257e" width="24px" height="24px">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </div>
+    <div class="active">Routes</div>
+    <div onclick="location.href='trackbeigetaas.html'">Track</div>
+    <div onclick="location.href='detailsbeigetaas.html'">Details</div>
+  </div>
+  <div id="map"></div>
+
+  <div class="route-controls">
+    <button id="prevBtn">←</button>
+    <span id="routeName">Blk 3, Gordon Heights</span>
+    <button id="nextBtn">→</button>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Routing Machine JS -->
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+  <script>
+    // Initialize map
+    const map = L.map('map').setView([14.835, 120.292], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Coordinates for waypoints (full route)
+    const waypoints = [
+      L.latLng(14.87531, 120.29330),
+      L.latLng(14.85886, 120.28938),
+      L.latLng(14.85710, 120.28951),
+      L.latLng(14.85454, 120.28973),
+      L.latLng(14.85165, 120.28869),
+      L.latLng(14.85127, 120.28870),
+      L.latLng(14.84779, 120.28986),
+      L.latLng(14.84568, 120.29032),
+      L.latLng(14.84333, 120.28829),
+      L.latLng(14.84093, 120.28639),
+      L.latLng(14.84273, 120.28551),
+      L.latLng(14.84240, 120.28698),
+    ];
+
+    const names = [
+      'Blk 24, Long Road, Gordon Heights',
+      'Ariola St.',
+      'Kauffman St.',
+      'Neptune St.',
+      'Acacia St.',
+      'Filtration Bridge',
+      'Filtration Road',
+      'Sta. Rita Bridge',
+      'Arthur St.',
+      'West 21st St.',
+      'Brill St.',
+      'West 22nd St.'
+    ];
+
+    let idx = 0;
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const routeName = document.getElementById('routeName');
+
+    // Draw the full route along roads using Routing Machine
+    const routingControl = L.Routing.control({
+      waypoints: waypoints,
+      createMarker: () => null,
+      lineOptions: { styles: [{ color: '#000', weight: 4 }] },
+      addWaypoints: false,
+      draggableWaypoints: false,
+      fitSelectedRoutes: true,
+      show: false,
+      showAlternatives: false
+    }).addTo(map);
+
+     // Create a custom jeep icon and moving marker at the first waypoint
+    const jeepIcon = L.icon({
+      iconUrl: 'beigejeep.png',
+      iconSize: [50, 40],
+      iconAnchor: [20, 20]
+    });
+    const movingMarker = L.marker(waypoints[0], { icon: jeepIcon }).addTo(map);
+
+    function showPosition(i) {
+      // Move marker to the i-th waypoint
+      movingMarker.setLatLng(waypoints[i]);
+      // Pan map to center on that point
+      map.panTo(waypoints[i]);
+      routeName.textContent = names[i];
+      prevBtn.disabled = (i === 0);
+      nextBtn.disabled = (i === waypoints.length - 1);
+    }
+
+    prevBtn.onclick = () => {
+      if (idx > 0) {
+        idx--; showPosition(idx);
+      }
+    };
+    nextBtn.onclick = () => {
+      if (idx < waypoints.length - 1) {
+        idx++; showPosition(idx);
+      }
+    };
+
+    // Initial display
+    showPosition(idx);
+
+    map.on('contextmenu', e => {
+            const lat = e.latlng.lat.toFixed(5), lng = e.latlng.lng.toFixed(5);
+            alert(`Coordinates: ${lat}, ${lng}`);
+        });
+  </script>
+</body>
+</html>

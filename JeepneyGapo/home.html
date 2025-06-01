@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JeepneyGapo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="logo">
+    <img src="logo.png" alt="Logo" class="logo-img">
+    
+</div>
+
+<div class="grid">
+    <div class="card" onclick="window.open('routesred.html', '_blank');">
+      <img src="redjeep.png" alt="Red Jeep">
+      <h2>Red Jeep</h2>
+      <p>Magsaysay Drive – Mabayuan & Gordon Heights</p>
+    </div>
+    <div class="card" onclick="window.open('routesorange.html', '_blank');">
+      <img src="orangejeep.png" alt="Orange Jeep">
+      <h2>Orange Jeep</h2>
+      <p>Gordon Heights – Pag-asa Market</p>
+    </div>
+    <div class="card" onclick="openBeigeModal();">
+      <img src="beigejeep.png" alt="Beige Jeep">
+      <h2>Beige Jeep</h2>
+      <p>Gordon Heights – West Bajac-Bajac</p>
+    </div>
+    <div class="card" onclick="window.open('routesbrown.html', '_blank');">
+      <img src="brownjeep.png" alt="Brown Jeep">
+      <h2>Brown Jeep</h2>
+      <p>New Public Market – Old Cabalan</p>
+    </div>
+    <div class="card" onclick="window.open('routesblue.html', '_blank');">
+      <img src="bluejeep.png" alt="Blue Jeep">
+      <h2>Blue Jeep</h2>
+      <p>Olongapo – Barrio Barretto</p>
+    </div>
+    <div class="card" onclick="openYellowModal();">
+      <img src="yellowjeep.png" alt="Yellow Jeep">
+      <h2>Yellow Jeep</h2>
+      <p>Magsaysay Drive – Rizal Avenue & Filtration St./Balic-Balic</p>
+    </div>
+  </div>
+
+  <div id="yellowModal" class="modal">
+    <div class="modal-content">
+      <div class="card" onclick="window.open('routesyellowpepsi.html','_blank');">
+        <img src="pepsi.png" alt="Pepsi" />
+        <h2>Pepsi</h2>
+      </div>
+      <div class="card" onclick="window.open('routesyellowstarita.html','_blank');">
+        <img src="starita.png" alt="Sta Rita" />
+        <h2>Sta. Rita</h2>
+      </div>
+      <div class="go-back" onclick="closeYellowModal();">Go back</div>
+    </div>
+  </div>
+
+<div id="beigeModal" class="modal">
+  <div class="modal-content beige-content">
+    <img src="beigeroute.png" alt="Beige Route">
+
+    <div class="beige-option top" onclick="window.open('routesbeigetaas.html','_blank');">
+      Taas
+    </div>
+    <div class="beige-option bottom" onclick="window.open('routesbeigebaba.html','_blank');">
+      Baba
+    </div>
+
+    <div class="go-back" onclick="closeBeigeModal();">Go back</div>
+  </div>
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

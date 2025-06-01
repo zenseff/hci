@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yellow Jeep (Sta. Rita)</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Routing Machine CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+</head>
+<body>
+  <div class="logo">
+    <img src="logo.png" alt="Logo" />
+  </div>
+  <div class="nav-buttons">
+    <div class="home-icon" onclick="location.href='home.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2c257e" width="24px" height="24px">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </div>
+    <div class="active">Routes</div>
+    <div onclick="location.href='trackyellowstarita.html'">Track</div>
+    <div onclick="location.href='detailsyellowstarita.html'">Details</div>
+  </div>
+  <div id="map"></div>
+
+  <div class="route-controls">
+    <button id="prevBtn">←</button>
+    <span id="routeName">Blk 3, Gordon Heights</span>
+    <button id="nextBtn">→</button>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Routing Machine JS -->
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+  <script>
+    // Initialize map
+    const map = L.map('map').setView([14.835, 120.292], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Coordinates for waypoints (full route)
+    const waypoints = [
+      L.latLng(14.85344, 120.29474),
+      L.latLng(14.84828, 120.29276),
+      L.latLng(14.84830, 120.29186),
+      L.latLng(14.84801, 120.29034),
+      L.latLng(14.84703, 120.28909),
+      L.latLng(14.84551, 120.29040),
+      L.latLng(14.84158, 120.28719),
+      L.latLng(14.83884, 120.28425),
+      L.latLng(14.83098, 120.28044),
+      L.latLng(14.82871, 120.27986),
+      L.latLng(14.82721, 120.28061),
+      L.latLng(14.82669, 120.28092),
+      L.latLng(14.82612, 120.28251),
+      L.latLng(14.82655, 120.28258),
+      L.latLng(14.83114, 120.28054),
+      L.latLng(14.84800, 120.29198)
+    ];
+
+    const names = [
+      'Balic-Balic Road',
+      'Sta. Rita Road',
+      'Alejo St.',
+      'Sampaguita St.',
+      'Filtration Road',
+      'Sta. Rita Bridge',
+      'Rizal Avenue',
+      'Ulo ng Apo',
+      'Friendship Unity, Rotonda',
+      'Rizal Avenue Extension',
+      '1st St.',
+      'Fendler Extension',
+      'Saint Columban St.',
+      'Magsaysay Avenue',
+      'Magsaysay Drive',
+      'Sta. Rita Road'
+    ];
+
+    let idx = 0;
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const routeName = document.getElementById('routeName');
+
+    // Draw the full route along roads using Routing Machine
+    const routingControl = L.Routing.control({
+      waypoints: waypoints,
+      createMarker: () => null,
+      lineOptions: { styles: [{ color: '#ffde59', weight: 4 }] },
+      addWaypoints: false,
+      draggableWaypoints: false,
+      fitSelectedRoutes: true,
+      show: false,
+      showAlternatives: false
+    }).addTo(map);
+
+     // Create a custom jeep icon and moving marker at the first waypoint
+    const jeepIcon = L.icon({
+      iconUrl: 'yellowjeep.png',
+      iconSize: [50, 40],
+      iconAnchor: [20, 20]
+    });
+    const movingMarker = L.marker(waypoints[0], { icon: jeepIcon }).addTo(map);
+
+    function showPosition(i) {
+      // Move marker to the i-th waypoint
+      movingMarker.setLatLng(waypoints[i]);
+      // Pan map to center on that point
+      map.panTo(waypoints[i]);
+      routeName.textContent = names[i];
+      prevBtn.disabled = (i === 0);
+      nextBtn.disabled = (i === waypoints.length - 1);
+    }
+
+    prevBtn.onclick = () => {
+      if (idx > 0) {
+        idx--; showPosition(idx);
+      }
+    };
+    nextBtn.onclick = () => {
+      if (idx < waypoints.length - 1) {
+        idx++; showPosition(idx);
+      }
+    };
+
+    // Initial display
+    showPosition(idx);
+
+    map.on('contextmenu', e => {
+            const lat = e.latlng.lat.toFixed(5), lng = e.latlng.lng.toFixed(5);
+            alert(`Coordinates: ${lat}, ${lng}`);
+        });
+  </script>
+</body>
+</html>

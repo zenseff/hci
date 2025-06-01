@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Jeep</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="logo">
+    <img src="logo.png" alt="Logo" class="logo-img">
+</div>
+
+<div class="nav-buttons">
+    <div class="home-icon" onclick="location.href='home.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2c257e" width="24px" height="24px">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </div>
+    <div onclick="location.href='routesred.html'">Routes</div>
+    <div class="active">Track</div>
+    <div onclick="location.href='detailsred.html'">Details</div>
+</div>
+
+<div id="map"></div>
+<div id="overlay">
+    <button id="overlay-close">←</button>
+    <div id="overlay-body">BODY NO</div>
+    <img id="overlay-img" src="redjeep.png" alt="Jeep" class="overlay-img">
+    <div id="overlay-plate">PLATE NO</div>
+    <hr id="overlay-divider">
+    <div class="overlay-info"><strong>Capacity:</strong> <span id="overlay-cap">-</span></div>
+    <div class="overlay-info"><strong>Driver:</strong> <span id="overlay-driver">-</span></div>
+    <div class="overlay-info"><strong>No. of Passengers:</strong> <span id="overlay-pass">-</span></div>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet-rotatedmarker@0.2.0/leaflet.rotatedMarker.min.js"></script>
+<script>
+    const map = L.map('map', { zoomAnimation:false, markerZoomAnimation:false }).setView([14.8225,120.2824],13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'&copy; OpenStreetMap contributors' }).addTo(map);
+
+    const jeepData = [
+            {
+                id: 'J02 098', plate: 'CVD 686', coords: [14.82699,120.28220],
+                cap: '22 pass.', driver: 'Eizen Joeseff O. Rodriguez', onboard: '14',
+                mapIcon: 'redjeeptop.png', overlayImg: 'redjeep.png', rotation: 180
+            },
+            {
+                id: 'J11 034', plate: 'XTR 420', coords: [14.83064,120.28087],
+                cap: '20 pass.', driver: 'Mark Joseph Ardenio', onboard: '10',
+                mapIcon: 'redjeeptop.png', overlayImg: 'redjeep.png', rotation: -40
+            },
+            {
+                id: 'J03 123', plate: 'ABC 123', coords: [14.83799, 120.28232],
+                cap: '18 pass.', driver: 'Charles De Leon', onboard: '12',
+                mapIcon: 'redjeeptop.png', overlayImg: 'redjeep.png', rotation: 350
+            },
+            {
+                id: 'J11 034', plate: 'XTR 420', coords: [14.86200, 120.29234],
+                cap: '20 pass.', driver: 'Mark Joseph Ardenio', onboard: '10',
+                mapIcon: 'redjeeptop.png', overlayImg: 'redjeep.png', rotation: 110
+            }
+        ];
+
+        function createMapIcon(src) {
+            return L.icon({ iconUrl: src, iconSize: [64,64], iconAnchor: [32,32] });
+        }
+
+        jeepData.forEach(item => {
+            const marker = L.marker(item.coords, {
+                icon: createMapIcon(item.mapIcon),
+                rotationAngle: item.rotation,
+                rotationOrigin: 'center center'
+            }).addTo(map);
+
+            marker.on('click', () => {
+                document.getElementById('overlay-body').innerText = item.id;
+                document.getElementById('overlay-img').src = item.overlayImg;
+                document.getElementById('overlay-plate').innerText = item.plate;
+                document.getElementById('overlay-cap').innerText = item.cap;
+                document.getElementById('overlay-driver').innerText = item.driver;
+                document.getElementById('overlay-pass').innerText = item.onboard;
+                document.getElementById('overlay').classList.add('show');
+            });
+        });
+
+        document.getElementById('overlay-close').onclick = ()=>{
+            document.getElementById('overlay').classList.remove('show');
+        };
+
+        map.on('contextmenu', e => {
+            const lat = e.latlng.lat.toFixed(5), lng = e.latlng.lng.toFixed(5);
+            alert(`Coordinates: ${lat}, ${lng}`);
+        });
+    </script>
+</body>
+</html>

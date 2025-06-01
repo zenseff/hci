@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beige Jeep (Baba)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="logo">
+    <img src="logo.png" alt="Logo" class="logo-img">
+</div>
+
+<div class="nav-buttons">
+    <div class="home-icon" onclick="location.href='home.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2c257e" width="24px" height="24px">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </div>
+    <div onclick="location.href='routesbeigebaba.html'">Routes</div>
+    <div onclick="location.href='trackbeigebaba.html'">Track</div>
+    <div class="active">Details</div>
+</div>
+
+<div class="sidebar" id="sidebar">
+    <div class="back-button" onclick="toggleSidebar()">←</div>
+    <img src="profile.png" alt="Profile" class="profile">
+    <h3 id="driver-name">Mark Joseph Ardenio</h3>
+    <div class="info-block">
+        <div class="info-label">Jeep Color:</div>
+        <div class="info-detail"><img src="beigejeep.png" alt="Jeep" class="jeep"></div>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+        <div class="info-label">Body no.:</div>
+        <div class="info-detail" id="body-no">J02 098</div>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+        <div class="info-label">Plate no.:</div>
+        <div class="info-detail" id="plate-no">CVD 686</div>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+        <div class="info-label">Contact no.:</div>
+        <div class="info-detail" id="contact">0912-345-6789</div>
+    </div>
+</div>
+
+<div class="container" id="container">
+    <div class="main" id="main">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Plate No.</th>
+                    <th>Body No.</th>
+                    <th>Driver</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Eizen Joeseff Rodriguez</td>
+                    <td class="dots" onclick="selectRow(this, 'Eizen Joeseff Rodriguez')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Mark Joseph Ardenio</td>
+                    <td class="dots" onclick="selectRow(this, 'Mark Joseph Ardenio')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Eizen Joeseff Rodriguez</td>
+                    <td class="dots" onclick="selectRow(this, 'Eizen Joeseff Rodriguez')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Mark Joseph Ardenio</td>
+                    <td class="dots" onclick="selectRow(this, 'Mark Joseph Ardenio')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Eizen Joeseff Rodriguez</td>
+                    <td class="dots" onclick="selectRow(this, 'Eizen Joeseff Rodriguez')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Mark Joseph Ardenio</td>
+                    <td class="dots" onclick="selectRow(this, 'Mark Joseph Ardenio')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Eizen Joeseff Rodriguez</td>
+                    <td class="dots" onclick="selectRow(this, 'Eizen Joeseff Rodriguez')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Mark Joseph Ardenio</td>
+                    <td class="dots" onclick="selectRow(this, 'Mark Joseph Ardenio')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Eizen Joeseff Rodriguez</td>
+                    <td class="dots" onclick="selectRow(this, 'Eizen Joeseff Rodriguez')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Mark Joseph Ardenio</td>
+                    <td class="dots" onclick="selectRow(this, 'Mark Joseph Ardenio')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Eizen Joeseff Rodriguez</td>
+                    <td class="dots" onclick="selectRow(this, 'Eizen Joeseff Rodriguez')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Mark Joseph Ardenio</td>
+                    <td class="dots" onclick="selectRow(this, 'Mark Joseph Ardenio')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Eizen Joeseff Rodriguez</td>
+                    <td class="dots" onclick="selectRow(this, 'Eizen Joeseff Rodriguez')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Mark Joseph Ardenio</td>
+                    <td class="dots" onclick="selectRow(this, 'Mark Joseph Ardenio')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Eizen Joeseff Rodriguez</td>
+                    <td class="dots" onclick="selectRow(this, 'Eizen Joeseff Rodriguez')">...</td>
+                </tr>
+                <tr>
+                    <td><img src="beigejeep.png" alt="Jeep" class="table-icon"></td>
+                    <td>CVD 686</td>
+                    <td>J02 098</td>
+                    <td>Mark Joseph Ardenio</td>
+                    <td class="dots" onclick="selectRow(this, 'Mark Joseph Ardenio')">...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+

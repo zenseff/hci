@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 Calendar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="month-grid">
+    <div class="month-box" data-month="0">January</div>
+    <div class="month-box" data-month="1">February</div>
+    <div class="month-box" data-month="2">March</div>
+    <div class="month-box" data-month="3">April</div>
+    <div class="month-box" data-month="4">May</div>
+    <div class="month-box" data-month="5">June</div>
+    <div class="month-box" data-month="6">July</div>
+    <div class="month-box" data-month="7">August</div>
+    <div class="month-box" data-month="8">September</div>
+    <div class="month-box" data-month="9">October</div>
+    <div class="month-box" data-month="10">November</div>
+    <div class="month-box" data-month="11">December</div>
+  </div>
+
+  <div class="calendar-popup">
+    <div class="wrapper">
+      <header>
+        <p class="current-date"></p>
+        <div class="icons">
+          <span id="prev">&#9664;</span>
+          <span id="next">&#9654;</span>
+        </div>
+      </header>
+      <div class="calendar">
+        <ul class="weeks">
+          <li>Sun</li>
+          <li>Mon</li>
+          <li>Tue</li>
+          <li>Wed</li>
+          <li>Thu</li>
+          <li>Fri</li>
+          <li>Sat</li>
+        </ul>
+        <ul class="days"></ul>
+      </div>
+      <button class="close-calendar">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
