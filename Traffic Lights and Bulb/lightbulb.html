@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightbulb</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        img {
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        img:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="color: rgb(0, 0, 0);">Light Bulb</h2>
+
+    <img id="myImage" src="pic_bulboff.gif" onclick="toggleLight()">
+
+    <script>
+        function toggleLight() {
+            let img = document.getElementById('myImage');
+            if (img.src.includes('bulboff')) {
+                img.src = 'pic_bulbon.gif';
+            } else {
+                img.src = 'pic_bulboff.gif';
+            }
+        }
+    </script>
+
+</body>
+</html>

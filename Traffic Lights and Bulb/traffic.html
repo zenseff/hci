@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Lights</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .traffic-light {
+            width: 120px;
+            height: 300px;
+            background: black;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .light {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: gray;
+            transition: background 0.5s;
+        }
+
+        .green {
+            background: green;
+        }
+
+        .yellow {
+            background: yellow;
+        }
+
+        .red {
+            background: red;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2 style="color: rgb(0, 0, 0);">Traffic Light</h2>
+
+    <div class="traffic-light">
+        <div id="redLight" class="light"></div>
+        <div id="yellowLight" class="light"></div>
+        <div id="greenLight" class="light green"></div>
+    </div>
+
+    <script>
+        let currentLight = 'green';
+
+        function changeLight() {
+            document.getElementById('redLight').classList.remove('red');
+            document.getElementById('yellowLight').classList.remove('yellow');
+            document.getElementById('greenLight').classList.remove('green');
+
+            if (currentLight === 'green') {
+                currentLight = 'yellow';
+                document.getElementById('yellowLight').classList.add('yellow');
+            } else if (currentLight === 'yellow') {
+                currentLight = 'red';
+                document.getElementById('redLight').classList.add('red');
+            } else {
+                currentLight = 'green';
+                document.getElementById('greenLight').classList.add('green');
+            }
+        }
+
+        setInterval(changeLight, 6000);
+    </script>
+
+</body>
+</html>

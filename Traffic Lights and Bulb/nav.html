@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <link rel="stylesheet" href="stylenav.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" onclick="loadPage('home.html')">HOME</a></li>
+                <li class="dropdown">
+                    <a href="#">ACTIVITIES ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="loadPage('lightbulb.html')">LIGHTS</a></li>
+                        <li><a href="#" onclick="loadPage('traffic.html')">TRAFFIC LIGHTS</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" onclick="loadPage('art.html')">ARTICLES</a></li>
+                <li><a href="#" onclick="loadPage('insp.html')">INSPIRATION</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <iframe id="contentFrame"></iframe>
+    </main>
+
+    <script src="scriptnav.js"></script>
+
+</body>
+</html>
